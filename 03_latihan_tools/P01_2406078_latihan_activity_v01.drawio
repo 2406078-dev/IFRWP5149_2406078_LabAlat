@@ -1,0 +1,31 @@
+<mxfile host="65bd71144e">
+    <diagram id="F0Wdx1CmZrzs6RZ9aHYz" name="Page-1">
+        <mxGraphModel dx="760" dy="774" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="i3G8P_gfDAxasOmWn59P-1" edge="1" parent="1" source="i3G8P_gfDAxasOmWn59P-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="i3G8P_gfDAxasOmWn59P-5" value="">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="i3G8P_gfDAxasOmWn59P-2" parent="1" style="ellipse;fillColor=strokeColor;html=1;" value="" vertex="1">
+                    <mxGeometry height="30" width="30" x="305" y="270" as="geometry"/>
+                </mxCell>
+                <mxCell id="i3G8P_gfDAxasOmWn59P-3" parent="1" style="ellipse;fillColor=strokeColor;html=1;" value="" vertex="1">
+                    <mxGeometry height="20" width="20" x="310" y="640" as="geometry"/>
+                </mxCell>
+                <mxCell id="i3G8P_gfDAxasOmWn59P-4" edge="1" parent="1" source="i3G8P_gfDAxasOmWn59P-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="i3G8P_gfDAxasOmWn59P-7" value="">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="i3G8P_gfDAxasOmWn59P-5" parent="1" style="whiteSpace=wrap;html=1;" value="Buka daftar peralatan" vertex="1">
+                    <mxGeometry height="60" width="120" x="260" y="360" as="geometry"/>
+                </mxCell>
+                <mxCell id="i3G8P_gfDAxasOmWn59P-6" edge="1" parent="1" source="i3G8P_gfDAxasOmWn59P-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="i3G8P_gfDAxasOmWn59P-3" value="">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="i3G8P_gfDAxasOmWn59P-7" parent="1" style="whiteSpace=wrap;html=1;" value="lihat informasi ketersediaan" vertex="1">
+                    <mxGeometry height="60" width="120" x="260" y="500" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
