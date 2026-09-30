@@ -4,7 +4,7 @@ NIM     : 2406078
 
 ### mahasiswa
 
-<p align="left"> <img src="https://komarev.com/ghpvc/?username=ihsan&label=Profile views&color=0e75b6&style=flat" alt="ihsan" /> </p>
+
 
 - 🔭 I'm currently working on **Praktikum Analisis dan Desain Berorientasi Objek**
 
