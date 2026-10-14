@@ -1,0 +1,8 @@
+## Keputusan Extend
+- Use case dasar    : SIA-UC03 Ajukan KRS
+- Use case tambahan : SIA-UC05 Unduh bukti pengajuan KRS
+- Kondisi           : [mahasiswa memilih unduh]
+- Extension point   : Bukti pengajuan tersedia (di SIA-UC03, langkah 6)
+- Alasan            : pengajuan KRS tetap berhasil tersimpan tanpa unduh bukti.
+                      Unduh bukti hanya menambahkan perilaku, bukan syarat
+                      keberhasilan pengajuan.

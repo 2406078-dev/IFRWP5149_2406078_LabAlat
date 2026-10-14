@@ -1,0 +1,152 @@
+# P03_SIA_skenario_v01
+
+| Metadata | Isi |
+|---|---|
+| NIM | 2406078 |
+| Kasus | SIA — Sistem Informasi Akademik |
+| Artefak | Skenario |
+| Versi | v01 |
+| Pertemuan | 3 — Use Case Diagram dan Use Case Description |
+
+---
+
+## 1. Deskripsi
+
+Mahasiswa mengajukan KRS dengan memilih mata kuliah. Setiap pengajuan
+menjalankan validasi KRS yang memeriksa kelengkapan, prasyarat mata kuliah,
+dan benturan jadwal. Jika validasi berhasil, sistem menyimpan pengajuan
+berstatus menunggu persetujuan dosen wali. Pada konfirmasi penyimpanan,
+mahasiswa dapat memilih mengunduh bukti pengajuan. Dosen wali menyetujui
+atau menolak KRS dan memberikan catatan keputusan.
+
+Ketentuan ini fiktif untuk praktikum. Batas SKS, aturan pembayaran, dan
+kewenangan institusi nyata tidak boleh ditambahkan tanpa sumber.
+
+---
+
+## 2. Tabel Kebutuhan
+
+| ID | Kebutuhan | Sumber |
+|---|---|---|
+| SIA-R01 | Mahasiswa dapat melihat jadwal kuliah | Pertemuan 2 |
+| SIA-R02 | Admin akademik dapat mengelola jadwal kuliah | Pertemuan 2 |
+| SIA-R03 | Mahasiswa dapat mengajukan KRS | Pertemuan 3 |
+| SIA-R04 | Sistem memvalidasi KRS sebagai bagian pengajuan | Pertemuan 3 |
+| SIA-R05 | Mahasiswa dapat mengunduh bukti jika memilihnya pada konfirmasi pengajuan | Pertemuan 3 |
+| SIA-R06 | Dosen wali dapat memproses persetujuan atau penolakan KRS | Pertemuan 3 |
+
+Catatan: Kode tugas dimulai dari R03 agar kebutuhan jadwal (SIA-R01 dan
+SIA-R02) dari Pertemuan 2 tetap memiliki identitas berbeda.
+
+---
+
+## 3. Batas Sistem dan Aturan
+
+### 3.1 Batas Sistem
+Sistem Informasi Akademik — modul pengajuan KRS. Perpindahan fisik,
+pembayaran, dan administrasi di luar sistem tidak dimodelkan.
+
+### 3.2 Aturan dan Asumsi
+
+| Kode | Jenis | Isi |
+|---|---|---|
+| A-01 | Asumsi | Pengguna telah terautentikasi |
+| A-02 | Asumsi | Data mata kuliah, prasyarat, dan jadwal tersedia |
+| A-03 | Aturan | Validasi gagal menyebabkan pengajuan belum berhasil tersimpan |
+| A-04 | Aturan | Unduh bukti tidak menjadi syarat keberhasilan pengajuan |
+| A-05 | Aturan | KRS tersimpan belum berarti disetujui |
+| A-06 | Batas | Pembayaran, pengisian nilai, dan implementasi basis data di luar tugas |
+
+### 3.3 Pertanyaan Belum Terjawab (ditandai)
+- Batas SKS per mahasiswa.
+- Aturan pembayaran sebagai prasyarat KRS.
+- Kewenangan institusi nyata atas perubahan KRS.
+
+---
+
+## 4. Tabel Identifikasi Aktor
+
+| ID Aktor | Nama Aktor | Tujuan terhadap Sistem | Kebutuhan Terkait |
+|---|---|---|---|
+| ACT-01 | Mahasiswa | Melihat jadwal kuliah, mengajukan KRS, dan mengunduh bukti pengajuan | SIA-R01, SIA-R03, SIA-R05 |
+| ACT-02 | Admin Akademik | Mengelola jadwal kuliah (di luar modul KRS) | SIA-R02 |
+| ACT-03 | Dosen Wali | Memproses persetujuan atau penolakan KRS dan memberikan catatan keputusan | SIA-R06 |
+
+Catatan pemodelan: Admin Akademik **tidak** diikutsertakan dalam use case
+modul KRS karena tidak berinteraksi dalam skenario pengajuan KRS. Aktor
+tersebut hanya terkait SIA-R02 (kelola jadwal) milik Pertemuan 2.
+
+---
+
+## 5. Tabel Katalog Use Case
+
+| ID Use Case | Nama Use Case | Aktor Terkait | Sumber Kebutuhan | Peran dalam Model |
+|---|---|---|---|---|
+| SIA-UC01 | Lihat jadwal kuliah | Mahasiswa | SIA-R01 | Fungsi utama (Pertemuan 2) |
+| SIA-UC02 | Kelola jadwal kuliah | Admin Akademik | SIA-R02 | Fungsi utama (Pertemuan 2) |
+| SIA-UC03 | Ajukan KRS | Mahasiswa | SIA-R03 | Fungsi utama mahasiswa |
+| SIA-UC04 | Validasi KRS | — | SIA-R04 | Perilaku yang disertakan «include» oleh UC03 |
+| SIA-UC05 | Unduh bukti pengajuan KRS | Mahasiswa | SIA-R05 | Tambahan bersyarat «extend» pada UC03 |
+| SIA-UC06 | Proses keputusan KRS | Dosen Wali | SIA-R06 | Fungsi utama dosen wali |
+
+Catatan: SIA-UC04 tidak memiliki asosiasi aktor karena hanya dipanggil
+sebagai «include» dari SIA-UC03.
+
+---
+
+## 6. Relasi Include
+
+| Sumber | Relasi | Tujuan | Sumber Kebutuhan | Alasan |
+|---|---|---|---|---|
+| SIA-UC03 Ajukan KRS | «include» | SIA-UC04 Validasi KRS | SIA-R04 | Validasi KRS selalu dijalankan pada setiap pengajuan yang mencapai tahap validasi; bukan perilaku opsional |
+
+Arah panah: dari **UC03 → UC04** (penyerta → disertakan).
+
+Catatan pemodelan:
+- Autentikasi pengguna **bukan** «include» Login, melainkan ditulis sebagai
+  prasyarat SIA-UC03 (pengguna telah terautentikasi).
+- «include» bukan sekadar "harus terjadi sebelum"; ia menyatakan perilaku
+  yang menjadi bagian dari pelaksanaan use case penyerta.
+
+---
+
+## 7. Relasi Extend
+
+| Use Case Tambahan | Relasi | Use Case Dasar | Kondisi | Extension Point | Sumber Kebutuhan | Alasan |
+|---|---|---|---|---|---|---|
+| SIA-UC05 Unduh bukti pengajuan KRS | «extend» | SIA-UC03 Ajukan KRS | [mahasiswa memilih unduh] | Bukti pengajuan tersedia (UC03 langkah 6) | SIA-R05 | Pengajuan tetap berhasil tersimpan tanpa unduh bukti; unduh hanya menambahkan perilaku |
+
+Arah panah: dari **UC05 → UC03** (tambahan → dasar).
+
+Catatan pemodelan:
+- Extension point berada pada use case dasar (SIA-UC03), bukan pada use case
+  tambahan.
+- Kondisi extend wajib tercantum di diagram (note) **dan** di use case
+  description.
+
+---
+
+## 8. Ringkasan Asosiasi Aktor–Use Case
+
+| Aktor | Use Case | Jenis Hubungan |
+|---|---|---|
+| Mahasiswa | SIA-UC01 | Asosiasi |
+| Mahasiswa | SIA-UC03 | Asosiasi |
+| Mahasiswa | SIA-UC05 | Asosiasi |
+| Admin Akademik | SIA-UC02 | Asosiasi |
+| Dosen Wali | SIA-UC06 | Asosiasi |
+| SIA-UC03 | SIA-UC04 | «include» |
+| SIA-UC05 | SIA-UC03 | «extend» |
+
+---
+
+## 9. Keterlacakan Kebutuhan → Use Case
+
+| Kebutuhan | Use Case | Status |
+|---|---|---|
+| SIA-R01 | SIA-UC01 | Terwakili (Pertemuan 2) |
+| SIA-R02 | SIA-UC02 | Terwakili (Pertemuan 2) |
+| SIA-R03 | SIA-UC03 | Terwakili |
+| SIA-R04 | SIA-UC04 (via «include» UC03) | Terwakili |
+| SIA-R05 | SIA-UC05 (via «extend» UC03) | Terwakili |
+| SIA-R06 | SIA-UC06 | Terwakili |

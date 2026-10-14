@@ -1,0 +1,9 @@
+## Keputusan Include
+- Relasi       : SIA-UC03 «include» SIA-UC04
+- Sumber       : SIA-R04
+- Tujuan       : memastikan setiap pengajuan KRS yang mencapai tahap validasi
+                 diperiksa kelengkapan, prasyarat, dan benturan jadwalnya.
+- Alasan       : validasi KRS BUKAN perilaku opsional; ia selalu dijalankan
+                 sebagai bagian dari pelaksanaan SIA-UC03 Ajukan KRS.
+- Catatan      : autentikasi pengguna BUKAN «include» Login, melainkan
+                 ditulis sebagai prasyarat SIA-UC03.
